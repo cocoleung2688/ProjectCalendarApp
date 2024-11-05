@@ -1,7 +1,7 @@
 // screens/ProjectCalendarScreen.js
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { View, Text, StyleSheet } from 'react-native';
+import { CalendarList } from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ProjectCalendarScreen({ route }) {
@@ -32,12 +32,16 @@ export default function ProjectCalendarScreen({ route }) {
 
   return (
     <View style={styles.container}>
-      <Calendar
+      <CalendarList
+        style={{height: 800}}
         markedDates={markedDates}
         onDayPress={(day) => toggleDate(day.dateString)}
         theme={{
+          calendarBackground: 'rgba(255, 255, 255, 0)',
           selectedDayBackgroundColor: 'blue',
           todayTextColor: 'blue',
+          textDayFontSize: 20,
+          textMonthFontSize: 20,
         }}
       />
     </View>
@@ -48,6 +52,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 16,
   },
 });
