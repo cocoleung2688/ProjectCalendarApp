@@ -23,7 +23,7 @@ export default function ProjectCalendarScreen({ route }) {
       if (newMarkedDates[date]) {
         delete newMarkedDates[date]; // Remove stamp if date is already marked
       } else {
-        newMarkedDates[date] = { marked: true, dotColor: 'blue' }; // Add stamp to date
+        newMarkedDates[date] = { customStyles: {container:{backgroundColor: 'pink'}}}; // Add stamp to date
       }
       AsyncStorage.setItem(`markedDates-${projectId}`, JSON.stringify(newMarkedDates)); // Save to storage
       return newMarkedDates;
@@ -31,17 +31,27 @@ export default function ProjectCalendarScreen({ route }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View className="bg-[#94b2b4]" style={styles.container}>
       <CalendarList
         style={{height: 800}}
+        markingType={'custom'}
         markedDates={markedDates}
         onDayPress={(day) => toggleDate(day.dateString)}
         theme={{
           calendarBackground: 'rgba(255, 255, 255, 0)',
           selectedDayBackgroundColor: 'blue',
-          todayTextColor: 'blue',
+          dayTextColor: '#e9e9e9',
+          textSectionTitleColor: '#e9e9e9',
+          monthTextColor: '#e9e9e9',
+          todayTextColor: '#ffffff',
           textDayFontSize: 20,
-          textMonthFontSize: 20,
+          textMonthFontSize: 24,
+          textDayFontWeight: 'bold',
+          textMonthFontWeight: 'bold',
+          textDayHeaderFontWeight: 'bold',
+          textDayFontFamily: 'monospace',
+          textMonthFontFamily: 'monospace',
+          textDayHeaderFontFamily: 'monospace'
         }}
       />
     </View>
